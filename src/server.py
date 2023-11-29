@@ -12,10 +12,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 s.bind((host, PORT))
 
-print "Listening on", PORT
+print("Listening on", PORT)
 
 while True:
 	(data, addr) = s.recvfrom(next)
-	print data
+	print(data)
 
 sys.exit()
