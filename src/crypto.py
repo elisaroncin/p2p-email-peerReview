@@ -15,10 +15,10 @@ def encryptionM(enString):
     extra = len(message) % 16
     if extra > 0:
         message = message + (' ' * (16 - extra))
-    print message
+    print(message)
 
     cipher_text = encryption_suite.encrypt(message)
-    print cipher_text
+    print(cipher_text)
     return cipher_text
 
 
@@ -27,7 +27,7 @@ def decryptionM(deString):
     #print deString
     decryption_suite = AES.new('This is a key123', AES.MODE_ECB)
     plain_text = decryption_suite.decrypt(deString)
-    print plain_text
+    print(plain_text)
     return plain_text
 
 

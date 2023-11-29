@@ -38,12 +38,12 @@ def store(node,identifier,object,originalPublisherID=None,age=0):
 def storeCallback(*args, **kwargs):
     """Callback function that is invoked when the store operation succeeds
     """
-    print'Value has been stored in the DHT'
+    print('Value has been stored in the DHT')
     #twisted.internet.reactor.callLater(2.5, fetch,self,)
 
 
 def genericErrorCallback(failure):
-    print'An error has occurredx:', failure.getErrorMessage()
+    print('An error has occurredx:'), failure.getErrorMessage()
     #twisted.internet.reactor.callLater(0,stop)
 
 
@@ -57,13 +57,13 @@ def fetch(node,identifier,eaddress):
 
 def fetchCallback(result,identifier,eaddress,node):
     if type(result) == dict:
-        print 'Value successfully retrieved'
+        print ('Value successfully retrieved')
         #print the email on the screem
         print(result[identifier])
         delete(node,identifier,eaddress)
         #return ???
     else:
-        print'Value not found'
+        print('Value not found')
 
 def delete(node,identifier, eaddress):
     """
@@ -77,7 +77,7 @@ def delete(node,identifier, eaddress):
     deferredResult.addErrback(genericErrorCallback)
 
 def deleteCallback(result):
-    print'Key/value pair deleted'
+    print('Key/value pair deleted')
 
 def append_Inbox(node,eaddress,header):
     """
@@ -90,7 +90,7 @@ def append_Inbox(node,eaddress,header):
     deferredResult.addErrback(genericErrorCallback)
 
 def appendCallback(*args,**kwargs):
-    print'notification has been stored in inbox'
+    print('notification has been stored in inbox')
 
 #def genericErrorCallback(failure):
     #print'An error has occurred',failure.getErrorMessage()
@@ -111,7 +111,7 @@ def readInboxCallback(result,eaddress,node):
 
         #print 'Value successfully retrieved'
     else:
-        print 'Value not found'
+        print ('Value not found')
 
 
 if __name__ == '__main__':
@@ -119,17 +119,17 @@ if __name__ == '__main__':
     from kademlia.datastore import SQLiteDataStore
     import sys, os
     if len(sys.argv) < 2:
-        print 'Usage:\n%s UDP_PORT  [KNOWN_NODE_IP  KNOWN_NODE_PORT]' % sys.argv[0]
-        print 'or:\n%s UDP_PORT  [FILE_WITH_KNOWN_NODES]' % sys.argv[0]
-        print '\nIf a file is specified, it should containg one IP address and UDP port\nper line, seperated by a space.'
+        print ('Usage:\n%s UDP_PORT  [KNOWN_NODE_IP  KNOWN_NODE_PORT]' % sys.argv[0])
+        print ('or:\n%s UDP_PORT  [FILE_WITH_KNOWN_NODES]' % sys.argv[0])
+        print ('\nIf a file is specified, it should containg one IP address and UDP port\nper line, seperated by a space.')
         sys.exit(1)
         try:
             int(sys.argv[1])
         except ValueError:
-            print '\nUDP_PORT must be an integer value.\n'
-            print 'Usage:\n%s UDP_PORT  [KNOWN_NODE_IP  KNOWN_NODE_PORT]' % sys.argv[0]
-            print 'or:\n%s UDP_PORT  [FILE_WITH_KNOWN_NODES]' % sys.argv[0]
-            print '\nIf a file is specified, it should contain one IP address and UDP port\nper line, seperated by a space.'
+            print ('\nUDP_PORT must be an integer value.\n')
+            print ('Usage:\n%s UDP_PORT  [KNOWN_NODE_IP  KNOWN_NODE_PORT]' % sys.argv[0])
+            print ('or:\n%s UDP_PORT  [FILE_WITH_KNOWN_NODES]' % sys.argv[0])
+            print ('\nIf a file is specified, it should contain one IP address and UDP port\nper line, seperated by a space.')
             sys.exit(1)
         if len(sys.argv) == 4:
             knownNodes = [(sys.argv[2], int(sys.argv[3]))]
